@@ -1,0 +1,33 @@
+.todos {
+  min-width: 300px;
+  margin-top: 30px;
+  border: 2px solid black;
+  font-size: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.584);
+}
+
+.items {
+  padding: 20px 15px 27px 15px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter {
+  flex: 1;
+  padding: 5px 15px;
+  padding: 0 auto;
+  text-align: center;
+  cursor: pointer;
+  outline: black solid 1px;
+  background: inherit;
+  border: 0;
+  font-size: inherit;
+}
+
+.active {
+  color: white;
+  background: black;
+}

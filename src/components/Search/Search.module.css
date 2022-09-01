@@ -1,0 +1,10 @@
+.search {
+  margin-top: 30px;
+  border-radius: 30px;
+  outline: 0;
+  border: 0;
+  padding: 18px;
+  font-size: 18px;
+  width: 500px;
+  text-align: center;
+}

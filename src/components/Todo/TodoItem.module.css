@@ -1,0 +1,19 @@
+.item {
+  display: flex;
+  gap: 20px;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.title {
+  user-select: none;
+  cursor: pointer;
+  align-self: center;
+}
+
+.btn {
+  cursor: pointer;
+  background: inherit;
+  border: 0;
+  font-size: 30px;
+}
