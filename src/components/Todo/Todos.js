@@ -82,7 +82,7 @@ export default function ({ todos, changeDone, deleteData }) {
                   data={todo}
                 />
               ))
-            : "no active  :)"
+            : "No active  :)"
           : doneTodos.length > 0
           ? doneTodos.map((todo) => (
               <TodoItem
@@ -92,7 +92,7 @@ export default function ({ todos, changeDone, deleteData }) {
                 data={todo}
               />
             ))
-          : "Nothing active done :)"}
+          : "Do something :)"}
         {/* {filterType === "all"
           ? todosItems.length > 0
             ? todosItems.map((todo) => (
