@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Search from "./components/Search/Search"
 import NewTodo from "./components/Todo/NewTodo"
 import Todos from "./components/Todo/Todos.js"
+import searchContext from "./context/search-context"
 
 const TODOS = [
   { id: 1, title: "buy something", done: false },
@@ -44,15 +45,17 @@ export default function () {
   }
 
   return (
-    <>
-      <Search onInput={searchHandler} />
+    <searchContext.Provider value={{
+      searchFilter: searchFilter,
+      searchHandler: searchHandler,
+    }}>
+      <Search/>
       <NewTodo onNewTodo={addTodo} />
       <Todos
-        searchFilter={searchFilter}
         todos={todos}
         changeDone={changeDone}
         deleteData={deleteData}
       />
-    </>
+    </searchContext.Provider>
   )
 }
