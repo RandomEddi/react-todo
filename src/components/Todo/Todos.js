@@ -7,8 +7,10 @@ export default function ({ todos, changeDone, deleteData }) {
   const ctx = useContext(searchContext)
   const [filterType, setFilterType] = useState("all")
   const [todosItems, setTodosItems] = useState(todos)
+
+  const activeTodos = todosItems.filter((todo) => todo.done === false)
   const doneTodos = todosItems.filter((todo) => todo.done === true)
-  
+
   useEffect(() => {
     if (ctx.searchFilter) {
       const patern = new RegExp(`${ctx.searchFilter}`)
@@ -51,12 +53,47 @@ export default function ({ todos, changeDone, deleteData }) {
         <button id="all" className={styles.filter + " " + styles.active}>
           All
         </button>
+        <button id="active" className={styles.filter}>
+          Active
+        </button>
         <button id="done" className={styles.filter}>
           Done
         </button>
       </div>
       <div className={styles.items}>
         {filterType === "all"
+          ? todosItems.length > 0
+            ? todosItems.map((todo) => (
+                <TodoItem
+                  onDeleteData={deleteDataHandler}
+                  onChangeDone={changeDoneHandler}
+                  key={todo.id}
+                  data={todo}
+                />
+              ))
+            : "Nothing to do :)"
+          : filterType === "active"
+          ? activeTodos.length > 0
+            ? activeTodos.map((todo) => (
+                <TodoItem
+                  onDeleteData={deleteDataHandler}
+                  onChangeDone={changeDoneHandler}
+                  key={todo.id}
+                  data={todo}
+                />
+              ))
+            : "no active  :)"
+          : doneTodos.length > 0
+          ? doneTodos.map((todo) => (
+              <TodoItem
+                onDeleteData={deleteDataHandler}
+                onChangeDone={changeDoneHandler}
+                key={todo.id}
+                data={todo}
+              />
+            ))
+          : "Nothing active done :)"}
+        {/* {filterType === "all"
           ? todosItems.length > 0
             ? todosItems.map((todo) => (
                 <TodoItem
@@ -76,7 +113,7 @@ export default function ({ todos, changeDone, deleteData }) {
                 data={todo}
               />
             ))
-          : "Nothing done :)"}
+          : "Nothing done :)"} */}
       </div>
     </div>
   )
