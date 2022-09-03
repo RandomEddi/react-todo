@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import styles from "./Todos.module.css"
 import TodoItem from "./TodoItem"
+import searchContext from "../../context/search-context"
 
-export default function ({ searchFilter, todos, changeDone, deleteData }) {
+export default function ({ todos, changeDone, deleteData }) {
+  const ctx = useContext(searchContext)
   const [filterType, setFilterType] = useState("all")
   const [todosItems, setTodosItems] = useState(todos)
   const doneTodos = todosItems.filter((todo) => todo.done === true)
-
+  
   useEffect(() => {
-    if (searchFilter) {
-      const patern = new RegExp(`${searchFilter}`)
+    if (ctx.searchFilter) {
+      const patern = new RegExp(`${ctx.searchFilter}`)
 
       setTodosItems(
         todos.filter((item) => {
@@ -19,7 +21,7 @@ export default function ({ searchFilter, todos, changeDone, deleteData }) {
         })
       )
     } else setTodosItems(todos)
-  }, [todos, searchFilter])
+  }, [todos, ctx.searchFilter])
 
   function selectActive(e) {
     let target = e.target
